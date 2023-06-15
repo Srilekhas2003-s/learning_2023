@@ -1,0 +1,44 @@
+/* Write a program to swap any type of data passed to an function.
+
+Topics to be covered
+- Pointers
+- Type Casting */
+
+#include <stdio.h>
+
+// Function to swap any type of data using pointers and type casting
+void swap(void *a, void *b, size_t size) {
+    char *temp = malloc(size);
+    memcpy(temp, a, size);
+    memcpy(a, b, size);
+    memcpy(b, temp, size);
+    free(temp);
+}
+
+int main() {
+    int num1 = 10;
+    int num2 = 20;
+
+    printf("Before swapping: num1 = %d, num2 = %d\n", num1, num2);
+
+    // Swap integers
+    swap(&num1, &num2, sizeof(int));
+
+    printf("After swapping: num1 = %d, num2 = %d\n", num1, num2);
+
+    double x = 3.14;
+    double y = 6.28;
+
+    printf("Before swapping: x = %lf, y = %lf\n", x, y);
+
+    // Swap doubles
+    swap(&x, &y, sizeof(double));
+
+    printf("After swapping: x = %lf, y = %lf\n", x, y);
+
+    return 0;
+}
+
+/*After swapping: num1 = 20, num2 = 10
+Before swapping: x = 3.140000, y = 6.280000 
+After swapping: x = 6.2800000, y = 3.140000  */
